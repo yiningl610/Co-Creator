@@ -4,7 +4,13 @@ import os
 import shutil
 import google.generativeai as genai
 import tempfile
+from utils import logo,Title
+
 genai.configure(api_key="AIzaSyBs5rT5G2cM-d2p_Un15THLq1Q7tYsJ9kU")
+
+logo()
+Title()
+
 # Function to create or cleanup the frame extraction directory
 def create_frame_output_dir(output_dir):
     if not os.path.exists(output_dir):

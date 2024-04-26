@@ -1,27 +1,21 @@
 import streamlit as st
+from utils import logo,Title
 
 st.set_page_config(
     page_title="Hello",
     page_icon="👋",
 )
 
-logo_html = f"""
-<style>
-img {{
-  position: absolute;
-  top: 0;
-  left: 0;  /* Change to 'right: 0' for top-right corner */
-}}
-</style>
-<img src="logo.png" alt="Logo" style="width: 100px; height: auto;">
-"""
-st.write(logo_html, unsafe_allow_html=True)
+# st.sidebar.image("logo.png",width=100)
+    
+logo()
+Title()
 
-st.write("# Welcome to Youtuber Helper! 👋")
+st.write("# Welcome to Co-Creater! 👋")
 
 st.markdown(
     """
-    I am Youtube Helper from GeminiAI!
+    I am Youtuber helper from GeminiAI!
     
     You can tell me your idea of a video, the exact video script you have or a finalized video.**👈 Select a way from the sidebar**
     I will suggest you with

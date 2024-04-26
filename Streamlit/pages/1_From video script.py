@@ -2,26 +2,18 @@ import streamlit as st
 import time
 import numpy as np
 import google.generativeai as genai
+from utils import logo,Title
+
 genai.configure(api_key="AIzaSyDQNefLOl-iHbpDc5omHuGgTkJVdGTX_PM")
 
 st.set_page_config(page_title="Script", page_icon="📈")
 
-logo_html = f"""
-<style>
-img {{
-  position: absolute;
-  top: 0;
-  left: 0;  /* Change to 'right: 0' for top-right corner */
-}}
-</style>
-<img src="logo.png" alt="Your Company Logo" style="width: 100px; height: auto;">
-"""
-st.write(logo_html, unsafe_allow_html=True)
+logo()
+Title()
 
 # 大标题
 st.markdown("# From video script")
 # 边栏标题
-st.sidebar.header("Helper from video script")
 st.write(
     """This page provides help you to create a successful youtube video from just an idea."""
 )
@@ -75,7 +67,7 @@ if inputs is not None:
       responseTags = model.generate_content(promptTags,request_options={"timeout": 600})
     
 
-    tab1, tab2, tab3, tab4 = st.tabs([ "Example", "Titles", "Thumbnails", "Tags"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs([ "Example", "Titles", "Thumbnails", "Tags","Ex"])
     with tab1:
         st.write(responseDescription.text)
     with tab2:
@@ -84,4 +76,7 @@ if inputs is not None:
         st.write(responseThumbnail.text)
     with tab4:
         st.write(responseTags.text)
+    with tab5:
+        st.write(inputs)
+
 
