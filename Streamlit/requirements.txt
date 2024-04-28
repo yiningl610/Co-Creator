@@ -3,5 +3,4 @@ google.generativeai
 youtube_search
 streamlit_extras
 shutil
-tempfile
 cv2
