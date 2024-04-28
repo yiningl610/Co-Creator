@@ -3,5 +3,5 @@ google.generativeai
 youtube_search
 streamlit_extras
 pytest-shutil
-tempfile
+#tempfile
 opencv-python
