@@ -16,7 +16,17 @@ genai.configure(api_key=st.secrets["videoAPI"])
 st.title("From Video")
 
 uploaded_file = st.file_uploader("Upload your video", type=['mp4'])
-
+topic = None
+target = None
+tone = None
+aim = None
+topic = st.text_input("Enter your topic here:")
+target = st.text_input("Enter your target audience here:")
+tone = st.text_input("Enter your desired tone here:")
+if topic and target and tone:
+  aim = "".join(['topic:',topic, 'target audience:', target, 'video tone:', tone])
+else:
+  st.write("Please present your topic.")
 if uploaded_file is not None:
   st.write(f"**Uploaded video:** {uploaded_file.name}")
   # Extract frames from uploaded video
@@ -45,12 +55,12 @@ if uploaded_file is not None:
   print(f"Completed file uploads!\n\nUploaded: {len(uploaded_files)} files")
 # Description generation (placeholder using user input)
   # Create the prompt.
-  promptTitle = "Brainstorm some click-worthy titles for this YouTube video! Based on the target audience, and the feeling it evokes. Focus on the benefits viewers will get. Exclude the output title."
+  promptTitle = f"Brainstorm some click-worthy titles for this YouTube video! Based on the video topic {topic}, and the target audience {target}, and the feeling it evokes. Focus on the benefits viewers will get."
   promptDescription = "Craft a captivating description under 150 words, weaving vivid language, intriguing questions, and a clear call to action for the YouTube video mentioned above. Think about the video's core theme, target audience, and desired emotional response (curiosity, excitement, etc.). Include specific keywords if relevant. Remember, the key is to make the video stand out as a hidden gem, enticing viewers to click play and delve deeper! Give me just 3 descriptions with no sub-categories or tips."
   promptThumbnail = "Give me suggestions on how to make the thumbnail for this video idea attractive"
-  promptTags = "Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific audience and niche of the video."
+  promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific audience {target} and niche of the video."
   promptKeywords = "Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
-  
+  promptRelevant = f"Whether this video relevant to {aim}"
   # Set the model to Gemini 1.5 Pro.
   model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
   # Make the LLM request.
@@ -71,8 +81,10 @@ if uploaded_file is not None:
   # Perform the search
   related_videos = YoutubeSearch(responseKeywords.text, max_results=10).to_dict()
   
+  requestRelevant = make_request(promptRelevant, uploaded_files)
+  responseRelevant = model.generate_content(requestRelevant, request_options={"timeout": 600})
   # output in streamlit
-  tab1, tab2, tab3, tab4, tab5 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "RelatedVideos"])
+  tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Relevance","Related Videos"])
   with tab1:
       st.write(responseTitle.text)
   with tab2:
@@ -82,7 +94,8 @@ if uploaded_file is not None:
   with tab4:
       st.write(responseTags.text)
   with tab5:
+      st.write(responseRelevant.text)
+  with tab6:
       for result in related_videos:
         st.write('Title: ',result['title'])
         st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
-
