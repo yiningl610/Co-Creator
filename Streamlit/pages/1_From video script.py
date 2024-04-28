@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 from utils import logo,Title
 
-genai.configure(api_key="AIzaSyDQNefLOl-iHbpDc5omHuGgTkJVdGTX_PM")
+genai.configure(api_key=st.secrets["textAPI"])
 
 st.set_page_config(page_title="Script",
                    layout="wide",
@@ -51,11 +51,11 @@ if inputs is not None:
       responseThumbnail = model.generate_content(promptThumbnail,request_options={"timeout": 600})
       responseTags = model.generate_content(promptTags,request_options={"timeout": 600})
     
-    tab1, tab2, tab3, tab4 = st.tabs([ "📍Example", "Titles", "Thumbnails", "Tags"])
+    tab1, tab2, tab3, tab4 = st.tabs(["Titles", "📍Description", "Thumbnails", "Tags"])
     with tab1:
-        st.write(responseDescription.text)
-    with tab2:
         st.write(responseTitle.text)
+    with tab2:
+        st.write(responseDescription.text)
     with tab3:
         st.write(responseThumbnail.text)
     with tab4:
