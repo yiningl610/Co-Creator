@@ -4,4 +4,4 @@ youtube_search
 streamlit_extras
 pytest-shutil
 tempfile
-opencv-python
+opencv-contrib-python
