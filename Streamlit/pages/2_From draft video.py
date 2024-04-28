@@ -60,7 +60,14 @@ if uploaded_file is not None:
   promptThumbnail = "Give me suggestions on how to make the thumbnail for this video idea attractive"
   promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific audience {target} and niche of the video."
   promptKeywords = "Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
-  promptRelevant = f"Whether this video relevant to {aim}"
+  promptFeedback = f"Give me feedback on 1. whether this video relevant to {aim}; 
+                                         2. pace of speech, how many words per minute;
+                                         3. UM or UH counts per 100 words;
+                                         4. based on Fleisch Kincaid Grade Level Test, what about the vocabulary's level;
+                                         5. filler words counts per 100 words;
+                                         6. pause counter;
+                                         7. volume;
+                                         8. lighting"
   # Set the model to Gemini 1.5 Pro.
   model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
   # Make the LLM request.
@@ -81,10 +88,10 @@ if uploaded_file is not None:
   # Perform the search
   related_videos = YoutubeSearch(responseKeywords.text, max_results=10).to_dict()
   
-  requestRelevant = make_request(promptRelevant, uploaded_files)
-  responseRelevant = model.generate_content(requestRelevant, request_options={"timeout": 600})
+  requestFeedback = make_request(promptFeedback, uploaded_files)
+  responseFeedback = model.generate_content(requestFeedback, request_options={"timeout": 600})
   # output in streamlit
-  tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Relevance","Related Videos"])
+  tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Feedback","Related Videos"])
   with tab1:
       st.write(responseTitle.text)
   with tab2:
@@ -94,7 +101,7 @@ if uploaded_file is not None:
   with tab4:
       st.write(responseTags.text)
   with tab5:
-      st.write(responseRelevant.text)
+      st.write(responseFeedback.text)
   with tab6:
       for result in related_videos:
         st.write('Title: ',result['title'])
