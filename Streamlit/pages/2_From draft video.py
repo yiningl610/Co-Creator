@@ -1,16 +1,20 @@
 import streamlit as st
-import cv2
 import os
-import shutil
 import google.generativeai as genai
-import tempfile
 from youtube_search import YoutubeSearch
 from utils import *
-genai.configure(api_key="AIzaSyBs5rT5G2cM-d2p_Un15THLq1Q7tYsJ9kU")
 
-st.title("YouTube Video Description & Improvement Assistant")
+st.set_page_config(page_title="Video",
+                   layout="wide",
+                   page_icon="📈")
+
 logo()
 Title()
+
+genai.configure(api_key="AIzaSyBs5rT5G2cM-d2p_Un15THLq1Q7tYsJ9kU")
+
+st.title("From Video")
+
 uploaded_file = st.file_uploader("Upload your video", type=['mp4'])
 
 if uploaded_file is not None:

@@ -4,7 +4,9 @@ from utils import logo,Title
 
 genai.configure(api_key="AIzaSyDQNefLOl-iHbpDc5omHuGgTkJVdGTX_PM")
 
-st.set_page_config(page_title="Script", page_icon="📈")
+st.set_page_config(page_title="Script",
+                   layout="wide",
+                   page_icon="📈")
 
 logo()
 Title()
@@ -49,7 +51,7 @@ if inputs is not None:
       responseThumbnail = model.generate_content(promptThumbnail,request_options={"timeout": 600})
       responseTags = model.generate_content(promptTags,request_options={"timeout": 600})
     
-    tab1, tab2, tab3, tab4, tab5 = st.tabs([ "Example", "Titles", "Thumbnails", "Tags","Ex"])
+    tab1, tab2, tab3, tab4 = st.tabs([ "📍Example", "Titles", "Thumbnails", "Tags"])
     with tab1:
         st.write(responseDescription.text)
     with tab2:
@@ -58,7 +60,5 @@ if inputs is not None:
         st.write(responseThumbnail.text)
     with tab4:
         st.write(responseTags.text)
-    with tab5:
-        st.write(inputs)
 
 
