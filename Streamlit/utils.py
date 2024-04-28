@@ -48,7 +48,7 @@ def extract_frame_from_video(upload_file):
     create_frame_output_dir(FRAME_EXTRACTION_DIRECTORY)
     
     with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-      temp_file.write(uploaded_file.read())
+      temp_file.write(upload_file.read())
       file_path = temp_file.name
     #bytes_data = upload_file.read()
     vidcap = cv2.VideoCapture(file_path)

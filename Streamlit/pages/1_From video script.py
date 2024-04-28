@@ -37,10 +37,10 @@ elif selection == "Specific video script":
     st.write("Please upload your video script.")
     
 if inputs is not None:
-    promptTitle = ["Give me some attractive titles of youtube video for: ",inputs]
-    promptDescription = ["Give me an example of youtube video description: ",inputs]
+    promptTitle = ["Based on the target audience, and the feeling it evokes. Focus on the benefits viewers will get. Give me just 3 titles without sub categories and no tips, Brainstorm some click-worthy titles based on idea: ",inputs]
+    promptDescription = ["Craft a captivating description under 150 words, weaving vivid language, intriguing questions, and a clear call to action for the YouTube video mentioned above. Think about the video's core theme, target audience, and desired emotional response (curiosity, excitement, etc.). Include specific keywords if relevant. Remember, the key is to make the video stand out as a hidden gem, enticing viewers to click play and delve deeper! Give me just 3 descriptions with no sub-categories or tips: ",inputs]
     promptThumbnail = ["Give me suggestions on how to make the thumbnail for this video idea attractive: ",inputs]
-    promptTags = ["Give me some hastags I can use for this video of idea: ",inputs]
+    promptTags = ["Create a list of 5 relevant hashtags for YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific audience and niche of the video. based on idea: ",inputs]
 
     model = genai.GenerativeModel('gemini-pro')
     with st.spinner("Generating..."):
