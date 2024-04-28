@@ -1,9 +1,0 @@
-streamlit
-google.generativeai
-youtube_search
-streamlit_extras
-pytest-shutil
-#tempfile
-opencv-python-headless
-#freeglut3-dev
-#libgtk2.0-dev
