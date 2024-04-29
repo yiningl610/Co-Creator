@@ -97,5 +97,5 @@ if topic and target and tone and uploaded_file:
         st.write('Title: ',result['title'])
         st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
   shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
-else:
-  st.write("Please present your topic.")
+# else:
+#   st.write("Please present your topic.")
