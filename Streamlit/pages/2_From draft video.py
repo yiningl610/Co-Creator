@@ -8,8 +8,8 @@ st.set_page_config(page_title="Video",
                    layout="wide",
                    page_icon="📈")
 
-# logo()
-# Title()
+logo()
+Title()
 
 genai.configure(api_key='AIzaSyBs5rT5G2cM-d2p_Un15THLq1Q7tYsJ9kU')
 
@@ -96,6 +96,6 @@ if topic and target and tone and uploaded_file:
       for result in related_videos:
         st.write('Title: ',result['title'])
         st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
-  #shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
+  shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
 # else:
 #   st.write("Please present your topic.")
