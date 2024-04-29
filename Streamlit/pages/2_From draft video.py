@@ -8,10 +8,10 @@ st.set_page_config(page_title="Video",
                    layout="wide",
                    page_icon="📈")
 
-logo()
-Title()
+# logo()
+# Title()
 
-genai.configure(api_key=st.secrets["videoAPI"])
+genai.configure(api_key='AIzaSyBs5rT5G2cM-d2p_Un15THLq1Q7tYsJ9kU')
 
 st.title("From Video")
 
