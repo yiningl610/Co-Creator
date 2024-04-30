@@ -97,17 +97,17 @@ if AnalyzeButton:
 # show in streamlit
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
 with tab1:
-    st.write(output["Title"])
+  st.write(output["Title"])
 with tab2:
-    st.write(output["Description"])
+  st.write(output["Description"])
 with tab3:
-    st.write(output["Thumbnail"])
+  st.write(output["Thumbnail"])
 with tab4:
-    st.write(output["Tag"])
+  st.write(output["Tag"])
 with tab5:
-    st.write(output["Relevance"])
+  st.write(output["Relevance"])
 with tab6:
-    for result in output["RelatedVideo"]:
+  for result in output["RelatedVideo"]:
       st.write('Title: ',result['title'])
       st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
 if DownloadButton:
