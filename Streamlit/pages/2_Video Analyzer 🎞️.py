@@ -50,7 +50,7 @@ if AnalyzeButton:
     # Change full_video to True to upload the whole video.
     full_video = True
     uploaded_files = []
-    print(f'Uploading {len(files_to_upload) if full_video else 10} files. This might take a bit...')
+    st.info(f'Uploading {len(files_to_upload) if full_video else 10} files. This might take a bit...')
     
     for file in files_to_upload if full_video else files_to_upload[:10]:
         print(f'Uploading: {file.file_path}...')
@@ -58,7 +58,7 @@ if AnalyzeButton:
         file.set_file_response(response)
         uploaded_files.append(file)
     
-    print(f"Completed file uploads!\n\nUploaded: {len(uploaded_files)} files")
+    st.info(f"Completed file uploads!\n\nUploaded: {len(uploaded_files)} files")
   # Description generation (placeholder using user input)
     # Create the prompt.
     promptTitle = f"Brainstorm some click-worthy titles for this YouTube video! Based on the video topic {topic}, and the target audience {target}, and the feeling it evokes. Focus on the benefits viewers will get."
@@ -100,12 +100,12 @@ if AnalyzeButton:
     # delete frame folder
     shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
   else:
-     st.write("Please present your topic and press Analyze button.")
+     st.info("Please present your topic and press Analyze button.")
 if DownloadButton:
   if output['Title']:
     download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
   else:
-    st.write('Please press Analyze Button to get feedback.')
+    st.info('Please press Analyze Button to get feedback.')
 
 # show in streamlit
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
