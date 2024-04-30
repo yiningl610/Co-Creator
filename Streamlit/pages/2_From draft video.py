@@ -26,9 +26,9 @@ tone = st.text_input("Enter your desired tone here:")
 uploaded_file = st.file_uploader("Upload your video", type=['mp4'])
 AnalyzeButton = st.button('Analyze')
 DownloadButton = st.button('Download Feedback')
-if topic and target and tone and uploaded_file:
-  aim = "".join(['topic:',topic, 'target audience:', target, 'video tone:', tone])
-  if AnalyzeButton:
+aim = "".join(['topic:',topic, 'target audience:', target, 'video tone:', tone])
+if AnalyzeButton:
+  if topic and target and tone and uploaded_file:
     # Extract frames from uploaded video
     extract_frame_from_video(uploaded_file)
     # Process each frame in the output directory
@@ -92,31 +92,30 @@ if topic and target and tone and uploaded_file:
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
   else:
-     st.write('Cannot Analyze without input.')
+     st.write("Please present your topic and press Analyze button.")
 
-  # show in streamlit
-  tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
-  with tab1:
-      st.write(output["Title"])
-  with tab2:
-      st.write(output["Description"])
-  with tab3:
-      st.write(output["Thumbnail"])
-  with tab4:
-      st.write(output["Tag"])
-  with tab5:
-      st.write(output["Relevance"])
-  with tab6:
-      for result in output["RelatedVideo"]:
-        st.write('Title: ',result['title'])
-        st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
-  if DownloadButton and output:
-     download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
-  elif not output:
-     st.write('Please press Analyze Button to get feedback.')
-  # delete frame folder
-  shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
-elif DownloadButton and not output:
-   st.write('Cannot download without input.')
-else:
-   st.write("Please present your topic and press button.")
+# show in streamlit
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
+with tab1:
+    st.write(output["Title"])
+with tab2:
+    st.write(output["Description"])
+with tab3:
+    st.write(output["Thumbnail"])
+with tab4:
+    st.write(output["Tag"])
+with tab5:
+    st.write(output["Relevance"])
+with tab6:
+    for result in output["RelatedVideo"]:
+      st.write('Title: ',result['title'])
+      st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
+if DownloadButton:
+  if output['Title']:
+    download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
+  else:
+    st.write('Please press Analyze Button to get feedback.')
+
+
+# delete frame folder
+shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
