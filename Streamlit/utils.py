@@ -118,6 +118,4 @@ def load_feedback_files(download_dir):
         with open(filepath, "r") as f:
           data = json.load(f)
         feedback_files.append({"filename": filename, "data": data})
-  else:
-    st.info(f"Cannot find folder: {download_dir}")
   return feedback_files
