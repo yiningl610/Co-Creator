@@ -6,14 +6,14 @@ from utils import *
 
 st.set_page_config(page_title="Video",
                    layout="wide",
-                   page_icon="📈")
+                   page_icon="🎞️")
 
 logo()
 Title()
 
 genai.configure(api_key=st.secrets['videoAPI'])
 
-st.title("From Video")
+st.title("From Video 🎞️")
 st.write(
     """This page will help you analyze your draft video, 
        give you some suggestions on video title, description, thumbnail, tags, 
