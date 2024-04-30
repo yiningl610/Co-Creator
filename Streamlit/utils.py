@@ -116,5 +116,5 @@ def load_feedback_files(download_dir):
       filepath = os.path.join(download_dir, filename)
       with open(filepath, "r") as f:
         data = json.load(f)
-      feedback_files.append(data)
+      feedback_files.append({"filename": filename, "data": data})
   return feedback_files
