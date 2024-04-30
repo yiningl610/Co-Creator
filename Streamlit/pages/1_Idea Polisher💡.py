@@ -11,7 +11,7 @@ st.set_page_config(page_title="Script",
 logo()
 Title()
 
-st.markdown("# This page help you to create a successful youtube video from just an idea")
+st.markdown("### This page help you to create a successful youtube video from just an idea")
 
 options = ["Simple idea", "Specific video script"]
 selection = st.selectbox("Choose the way you want to express your idea:", options)
