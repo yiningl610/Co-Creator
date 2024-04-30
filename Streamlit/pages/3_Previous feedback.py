@@ -8,7 +8,7 @@ Title()
 
 st.title("Local Feedback")
 st.write(
-    """This page will reload historical downloaded feedback files from default folder cocreater.
+    """This page will reload historical downloaded feedback files from default folder cocreater.  
        Or you can upload from other path.
     """
 )
