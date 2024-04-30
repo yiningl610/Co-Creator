@@ -91,7 +91,7 @@ if topic and target and tone and uploaded_file:
               "Relevance": responseRelevant.text,
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
-  else
+  else:
      st.write('Cannot Analyze without input.')
 
   # show in streamlit
