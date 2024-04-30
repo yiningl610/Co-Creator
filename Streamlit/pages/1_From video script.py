@@ -11,7 +11,7 @@ st.set_page_config(page_title="Script",
 logo()
 Title()
 
-st.markdown("# From video script")
+st.markdown("# Idea Polisher")
 st.write(
     """This page provides help you to create a successful youtube video from just an idea."""
 )
