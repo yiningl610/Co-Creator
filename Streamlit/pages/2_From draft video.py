@@ -60,7 +60,7 @@ if topic and target and tone and uploaded_file and AnalyzeButton:
   promptThumbnail = "Give me suggestions on how to make the thumbnail for this video idea attractive"
   promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific audience {target} and niche of the video."
   promptKeywords = "Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
-  promptRelevant = f"whether this video relevant to {aim}"
+  promptRelevant = f"Tell me whether the video is relevant to the features: {aim}"
   # Set the model to Gemini 1.5 Pro.
   model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
   # Make the LLM request.
