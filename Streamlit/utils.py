@@ -119,3 +119,22 @@ def load_feedback_files(download_dir):
           data = json.load(f)
         feedback_files.append({"filename": filename, "data": data})
   return feedback_files
+
+# Function to show Video Feedback in streamlit by using tabs
+# Input data is a dictionary
+def show_video_feedback(data): 
+  tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
+  with tab1:
+    st.write(data["Title"])
+  with tab2:
+    st.write(data["Description"])
+  with tab3:
+    st.write(data["Thumbnail"])
+  with tab4:
+    st.write(data["Tag"])
+  with tab5:
+    st.write(data["Relevance"])
+  with tab6:
+    for result in data["RelatedVideo"]:
+      st.write('Title: ',result['title'])
+      st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
