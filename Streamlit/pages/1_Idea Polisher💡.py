@@ -27,13 +27,13 @@ if selection == "Simple idea":
   if idea and target and tone:
     inputs = "".join(['idea:',idea, 'target audience:', target, 'video tone:', tone])
   else:
-    st.write("Please present your idea.")
+    st.info("Please present your idea.")
 elif selection == "Specific video script":
   uploaded_file = st.file_uploader("Upload your video script here", type="txt")
   if uploaded_file is not None:
     inputs = uploaded_file.read().decode("utf-8")
   else:
-    st.write("Please upload your video script.")
+    st.info("Please upload your video script.")
     
 if inputs is not None:
     promptTitle = ["Based on the target audience, and the feeling it evokes. Focus on the benefits viewers will get. Give me just 3 titles without sub categories and no tips, Brainstorm some click-worthy titles based on idea: ",inputs]
