@@ -1,5 +1,12 @@
 from utils import *
-st.markdown("# Previous Feedback")
+st.set_page_config(page_title="PreviousFeedback",
+                   layout="wide",
+                   page_icon="🎦")
+
+logo()
+Title()
+
+st.title("Local Feedback")
 st.write(
     """This page will reload historical downloaded feedback files from default folder cocreater.
        Or you can upload from other path.
