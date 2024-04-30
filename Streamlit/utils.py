@@ -7,7 +7,7 @@ from streamlit_extras.app_logo import add_logo
 # im1 = im.resize(([100,100]))
 
 def logo():
-    add_logo("Streamlit/logo_rmbg_200.png",height=80)
+    add_logo("Streamlit/logo_rmbg_.png",height=80)
     
 def Title():
     st.markdown(
