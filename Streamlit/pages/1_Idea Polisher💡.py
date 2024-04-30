@@ -11,10 +11,7 @@ st.set_page_config(page_title="Script",
 logo()
 Title()
 
-st.markdown("# Idea Polisher")
-st.write(
-    """This page provides help you to create a successful youtube video from just an idea."""
-)
+st.markdown("# This page help you to create a successful youtube video from just an idea")
 
 options = ["Simple idea", "Specific video script"]
 selection = st.selectbox("Choose the way you want to express your idea:", options)
@@ -43,7 +40,7 @@ if inputs is not None:
     promptDescription = ["Craft a captivating description under 150 words, weaving vivid language, intriguing questions, and a clear call to action for the YouTube video mentioned above. Think about the video's core theme, target audience, and desired emotional response (curiosity, excitement, etc.). Include specific keywords if relevant. Remember, the key is to make the video stand out as a hidden gem, enticing viewers to click play and delve deeper! Give me just 3 descriptions with no sub-categories or tips: ",inputs]
     promptThumbnail = ["Give me suggestions on how to make the thumbnail for this video idea attractive: ",inputs]
     promptTags = ["Create a list of 5 relevant hashtags for YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific audience and niche of the video. based on idea: ",inputs]
-
+    
     model = genai.GenerativeModel('gemini-pro')
     with st.spinner("Generating..."):
       responseTitle = model.generate_content(promptTitle,request_options={"timeout": 600})

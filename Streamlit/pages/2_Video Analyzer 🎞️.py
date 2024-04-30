@@ -13,12 +13,11 @@ Title()
 
 genai.configure(api_key=st.secrets['videoAPI'])
 
-st.title("Video Analyzer 🎞️")
+st.title("This page will help you analyze your draft video")
 st.write(
-    """This page will help you analyze your draft video, 
-       give you some suggestions on video title, description, thumbnail, tags, 
-       and can tell you whether the video content is relevant to your topic, target audience, and tone,
-       to make your video more attractive.
+    """Give you some suggestions on video title, description, thumbnail, tags.
+       Tell you whether the video content is relevant to your topic, target audience, and tone.
+       To make your video more attractive.
     """
 )
 

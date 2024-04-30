@@ -6,9 +6,9 @@ st.set_page_config(page_title="PreviousFeedback",
 logo()
 Title()
 
-st.title("Local Feedback Recaller 📂")
+st.title("This page will reload historical downloaded feedback files")
 st.write(
-    """This page will reload historical downloaded feedback files from default folder cocreater.  
+    """From default folder cocreater.  
        Or you can upload from other path.
     """
 )
