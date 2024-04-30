@@ -23,8 +23,9 @@ topic = st.text_input("Enter your topic here:")
 target = st.text_input("Enter your target audience here:")
 tone = st.text_input("Enter your desired tone here:")
 uploaded_file = st.file_uploader("Upload your video", type=['mp4'])
-button = st.button('Analyze')
-if topic and target and tone and uploaded_file and button:
+AnalyzeButton = st.button('Analyze')
+DownloadButton = st.button('Download Feedback')
+if topic and target and tone and uploaded_file and AnalyzeButton:
   aim = "".join(['topic:',topic, 'target audience:', target, 'video tone:', tone])
   
   # Extract frames from uploaded video
@@ -105,6 +106,11 @@ if topic and target and tone and uploaded_file and button:
       for result in output["RelatedVideo"]:
         st.write('Title: ',result['title'])
         st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
+  if DownloadButton and output:
+     download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
+  elif not output:
+     st.write('Please press Analyze Button to get feedback.')
+  # delete frame folder
   shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
 else:
   st.write("Please present your topic and press button.")

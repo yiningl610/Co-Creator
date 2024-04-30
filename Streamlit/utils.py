@@ -30,7 +30,8 @@ import os
 import shutil
 import tempfile
 import cv2
-
+import json
+from datetime import datetime
 # Constants
 FRAME_EXTRACTION_DIRECTORY = "./pages/content/frames"
 FRAME_PREFIX = "_frame"
@@ -96,3 +97,24 @@ def make_request(prompt, files):
         request.append(file.timestamp)
         request.append(file.response)
     return request
+
+# Download directory for results
+DOWNLOAD_DIR_VIDEO = "cocreater/draft_video_feedback"
+DOWNLOAD_DIR_SCRIPT = "cocreater/video_script_feedback"
+# Function to download dictionary results to a json file
+def download_dict(data, filename, download_dir):
+  os.makedirs(download_dir, exist_ok=True)  # Create directory if it doesn't exist
+  filepath = os.path.join(download_dir, f'{filename}_{datetime.now().strftime("%b_%d_%Y")}')
+  with open(filepath, "w") as f:
+    json.dump(data, f, indent=4)
+  st.success(f"Downloaded results to: {filepath}")
+# Function to load json files
+def load_feedback_files(download_dir):
+  feedback_files = []
+  for filename in os.listdir(download_dir):
+    if filename.endswith(".json"):
+      filepath = os.path.join(download_dir, filename)
+      with open(filepath, "r") as f:
+        data = json.load(f)
+      feedback_files.append(data)
+  return feedback_files
