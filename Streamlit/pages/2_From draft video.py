@@ -108,8 +108,8 @@ with tab5:
   st.write(output["Relevance"])
 with tab6:
   for result in output["RelatedVideo"]:
-      st.write('Title: ',result['title'])
-      st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
+    st.write('Title: ',result['title'])
+    st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
 if DownloadButton:
   if output['Title']:
     download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
