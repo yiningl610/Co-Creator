@@ -1,3 +1,4 @@
+import asyncio
 import streamlit as st
 # from PIL import Image
 
@@ -25,6 +26,21 @@ def Title():
         """,
         unsafe_allow_html=True,
     )
+
+async def generate_content_async(model,prompt,bar):
+    
+    # 生成内容的请求选项
+    request_options = {"timeout": 600}
+    
+    # 异步生成内容
+    async def generate_content():
+        for progress in range(101):
+            yield progress
+            await asyncio.sleep(0.1)  # 模拟生成内容的过程
+
+    async for progress in generate_content():
+        # 更新进度条的值
+        bar.progress(progress)
 
 import os
 import shutil
