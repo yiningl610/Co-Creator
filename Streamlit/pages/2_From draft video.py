@@ -11,7 +11,7 @@ st.set_page_config(page_title="Video",
 logo()
 Title()
 
-genai.configure(api_key=st.secrets['anotherAPI'])
+genai.configure(api_key=st.secrets['videoAPI'])
 
 st.title("From Video")
 
