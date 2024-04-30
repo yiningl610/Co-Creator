@@ -91,8 +91,15 @@ if AnalyzeButton:
               "Relevance": responseRelevant.text,
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
+    # delete frame folder
+    shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
   else:
      st.write("Please present your topic and press Analyze button.")
+if DownloadButton:
+  if output['Title']:
+    download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
+  else:
+    st.write('Please press Analyze Button to get feedback.')
 
 # show in streamlit
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
@@ -110,12 +117,7 @@ with tab6:
   for result in output["RelatedVideo"]:
     st.write('Title: ',result['title'])
     st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
-if DownloadButton:
-  if output['Title']:
-    download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
-  else:
-    st.write('Please press Analyze Button to get feedback.')
 
 
-# delete frame folder
-shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
+
+
