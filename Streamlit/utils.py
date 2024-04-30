@@ -111,10 +111,13 @@ def download_dict(data, filename, download_dir):
 # Function to load json files
 def load_feedback_files(download_dir):
   feedback_files = []
-  for filename in os.listdir(download_dir):
-    if filename.endswith(".json"):
-      filepath = os.path.join(download_dir, filename)
-      with open(filepath, "r") as f:
-        data = json.load(f)
-      feedback_files.append({"filename": filename, "data": data})
+  if os.path.exists(download_dir):
+    for filename in os.listdir(download_dir):
+      if filename.endswith(".json"):
+        filepath = os.path.join(download_dir, filename)
+        with open(filepath, "r") as f:
+          data = json.load(f)
+        feedback_files.append({"filename": filename, "data": data})
+  else:
+    st.info(f"Cannot find folder: {download_dir}")
   return feedback_files
