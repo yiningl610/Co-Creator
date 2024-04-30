@@ -31,7 +31,7 @@ target = st.text_input("Enter your target audience here:")
 tone = st.text_input("Enter your desired tone here:")
 uploaded_file = st.file_uploader("Upload your video", type=['mp4'])
 AnalyzeButton = st.button('Analyze')
-DownloadButton = st.button('Download Feedback')
+
 aim = "".join(['topic:',topic, 'target audience:', target, 'video tone:', tone])
 if AnalyzeButton:
   if topic and target and tone and uploaded_file:
@@ -101,11 +101,7 @@ if AnalyzeButton:
     shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
   else:
      st.info("Please present your topic and press Analyze button.")
-if DownloadButton:
-  if output['Title']:
-    download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
-  else:
-    st.info('Please press Analyze Button to get feedback.')
+
 
 # show in streamlit
 tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
@@ -130,6 +126,10 @@ with tab6:
       st.write('Title: ',result['title'])
       st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
 
-
-
+DownloadButton = st.button('Download Feedback')
+if DownloadButton:
+  if output['Title']:
+    download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
+  else:
+    st.info('Please press Analyze Button to get feedback.')
 
