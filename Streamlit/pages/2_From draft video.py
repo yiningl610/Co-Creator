@@ -19,6 +19,7 @@ topic = None
 target = None
 tone = None
 aim = None
+output = None
 topic = st.text_input("Enter your topic here:")
 target = st.text_input("Enter your target audience here:")
 tone = st.text_input("Enter your desired tone here:")
@@ -112,5 +113,7 @@ if topic and target and tone and uploaded_file and AnalyzeButton:
      st.write('Please press Analyze Button to get feedback.')
   # delete frame folder
   shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
+elif DownloadButton and not output:
+   st.write('Cannot download without input.')
 else:
-  st.write("Please present your topic and press button.")
+   st.write("Please present your topic and press button.")
