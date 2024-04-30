@@ -4,7 +4,7 @@ st.set_page_config(page_title="PreviousFeedback",
                    page_icon="📂")
 
 logo()
-Title()
+#Title()
 
 st.markdown("### This page will reload historical downloaded feedback files")
 st.write("From default folder cocreater.")

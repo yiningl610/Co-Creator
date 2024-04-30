@@ -9,7 +9,7 @@ st.set_page_config(page_title="Video",
                    page_icon="🎞️")
 
 logo()
-Title()
+#Title()
 
 genai.configure(api_key=st.secrets['videoAPI'])
 

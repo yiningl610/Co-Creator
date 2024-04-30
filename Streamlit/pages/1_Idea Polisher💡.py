@@ -9,7 +9,7 @@ st.set_page_config(page_title="Script",
                    page_icon="📈")
 
 logo()
-Title()
+#Title()
 
 st.markdown("### This page help you to create a successful youtube video from just an idea")
 
