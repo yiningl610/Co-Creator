@@ -91,7 +91,10 @@ if topic and target and tone and uploaded_file:
               "Relevance": responseRelevant.text,
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
-  # output in streamlit
+  else
+     st.write('Cannot Analyze without input.')
+
+  # show in streamlit
   tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
   with tab1:
       st.write(output["Title"])
