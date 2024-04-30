@@ -24,7 +24,7 @@ if feedback_files:
     with st.expander(page_name):
       st.subheader(f'Feedback from: {page_name}')
       # Display the content of the selected feedback file on the subpage
-      show_video_feedback(data)
+      show_feedback(data)
 
 # Informative message if there are no feedback files
 else:
@@ -42,7 +42,7 @@ else:
       st.success("File uploaded successfully!")
 
       # Display the uploaded data (optional)
-      show_video_feedback(data)
+      show_feedback(data)
     except json.JSONDecodeError as e:
       st.error("Error: Invalid JSON file. Please upload a valid JSON file.")
   else:

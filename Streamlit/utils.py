@@ -120,21 +120,26 @@ def load_feedback_files(download_dir):
         feedback_files.append({"filename": filename, "data": data})
   return feedback_files
 
-# Function to show Video Feedback in streamlit by using tabs
-# Input data is a dictionary
-def show_video_feedback(data): 
-  tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
-  with tab1:
-    st.write(data["Title"])
-  with tab2:
-    st.write(data["Description"])
-  with tab3:
-    st.write(data["Thumbnail"])
-  with tab4:
-    st.write(data["Tag"])
-  with tab5:
-    st.write(data["Relevance"])
-  with tab6:
-    for result in data["RelatedVideo"]:
-      st.write('Title: ',result['title'])
-      st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
+# Function to show Feedback in streamlit by using tabs
+def show_feedback(data): 
+  """
+  Displays a dictionary in Streamlit tabs.
+  Args:
+      data (dict): The dictionary to display.
+  """
+  videos = []
+  # Loop through each key-value pair in the dictionary
+  for key, value in data.items():
+    # Check existance of Related Video
+    if key.lower()=='relatedvideo':
+      videos = value
+    else:
+      # Create a tab with the key as the title
+      with st.expander(key):
+        # Display the value of the key (can be another dictionary, list, or any data)
+        st.write(value)
+    if videos:
+       st.expander("Related Videos")
+       for video in videos:
+          st.write('Title: ',video['title'])
+          st.write(f"Video URL: https://www.youtube.com/watch?v={video['id']}")
