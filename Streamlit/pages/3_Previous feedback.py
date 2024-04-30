@@ -41,7 +41,7 @@ if feedback_script:
 
 # Informative message if there are no feedback files
 if not feedback_script or not feedback_video:
-  st.info("No local feedback files found yet. \nTry our amazing tools supported by Gemini to make your video better and develop new ideas!")
+  st.info("No local feedback files found yet. Try our amazing tools supported by Gemini to make your video better and develop new ideas!")
   st.write("Please upload a JSON file containing the feedback dictionary.")
 
   # File upload functionality
