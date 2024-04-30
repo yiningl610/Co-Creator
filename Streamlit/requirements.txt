@@ -6,3 +6,4 @@ pytest-shutil
 #tempfile
 opencv-python-headless
 datetime
+#altair==4.0
