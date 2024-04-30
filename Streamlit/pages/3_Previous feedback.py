@@ -13,10 +13,23 @@ st.write(
     """
 )
 # Load json file from cocreater/draft_video_feedback
-feedback_files = load_feedback_files(DOWNLOAD_DIR_VIDEO)
+feedback_video = load_feedback_files(DOWNLOAD_DIR_VIDEO)
 # Subpage navigation (if there are feedback files)
-if feedback_files:
-  for file in feedback_files:
+if feedback_video:
+  for file in feedback_video:
+    # Get subpage name from filename (excluding extension)
+    page_name = file['filename'].split(".")[0] 
+    data = file['data']
+    # Create subpages
+    with st.expander(page_name):
+      st.subheader(f'Feedback from: {page_name}')
+      # Display the content of the selected feedback file on the subpage
+      show_feedback(data)
+# Load json file from cocreater/video_script_feedback
+feedback_script = load_feedback_files(DOWNLOAD_DIR_SCRIPT)
+# Subpage navigation (if there are feedback files)
+if feedback_script:
+  for file in feedback_script:
     # Get subpage name from filename (excluding extension)
     page_name = file['filename'].split(".")[0] 
     data = file['data']
@@ -27,8 +40,8 @@ if feedback_files:
       show_feedback(data)
 
 # Informative message if there are no feedback files
-else:
-  st.info("No local feedback files found yet. Download some results to view them here.")
+if not feedback_script or not feedback_video:
+  st.info("No local feedback files found yet. Try our amazing tools supported by Gemini to make your video better and develop new ideas!")
   st.write("Please upload a JSON file containing the feedback dictionary.")
 
   # File upload functionality
