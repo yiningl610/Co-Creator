@@ -23,7 +23,8 @@ topic = st.text_input("Enter your topic here:")
 target = st.text_input("Enter your target audience here:")
 tone = st.text_input("Enter your desired tone here:")
 uploaded_file = st.file_uploader("Upload your video", type=['mp4'])
-if topic and target and tone and uploaded_file and st.button('Analyze'):
+button = st.button('Analyze')
+if topic and target and tone and uploaded_file and button:
   aim = "".join(['topic:',topic, 'target audience:', target, 'video tone:', tone])
   
   # Extract frames from uploaded video
@@ -80,22 +81,30 @@ if topic and target and tone and uploaded_file and st.button('Analyze'):
   
   requestRelevant = make_request(promptRelevant, uploaded_files)
   responseRelevant = model.generate_content(requestRelevant, request_options={"timeout": 600})
+  #store results into dict
+  output = {"Title": responseTitle.text,
+            "Description": responseDescription.text,
+            "Thumbnail": responseThumbnail.text,
+            "Tag": responseTags.text,
+            "Relevance": responseRelevant.text,
+            "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
+            }
   # output in streamlit
   tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
   with tab1:
-      st.write(responseTitle.text)
+      st.write(output["Title"])
   with tab2:
-      st.write(responseDescription.text)
+      st.write(output["Description"])
   with tab3:
-      st.write(responseThumbnail.text)
+      st.write(output["Thumbnail"])
   with tab4:
-      st.write(responseTags.text)
+      st.write(output["Tag"])
   with tab5:
-      st.write(responseRelevant.text)
+      st.write(output["Relevance"])
   with tab6:
-      for result in related_videos:
+      for result in output["RelatedVideo"]:
         st.write('Title: ',result['title'])
         st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
   shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
-# else:
-#   st.write("Please present your topic.")
+else:
+  st.write("Please present your topic and press button.")
