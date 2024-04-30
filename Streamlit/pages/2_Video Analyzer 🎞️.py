@@ -15,9 +15,9 @@ genai.configure(api_key=st.secrets['videoAPI'])
 
 st.markdown("### This page will help you analyze your draft video")
 st.write(
-    """Give you some suggestions on video title, description, thumbnail, tags.
-       Tell you whether the video content is relevant to your topic, target audience, and tone.
-       To make your video more attractive.
+    """Give you some suggestions on video title, description, thumbnail, tags.  
+       Tell you whether the video content is relevant to your topic, target audience, and tone.  
+       To make your video more attractive.  
     """
 )
 

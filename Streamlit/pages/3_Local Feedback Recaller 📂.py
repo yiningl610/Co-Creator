@@ -8,8 +8,7 @@ Title()
 
 st.markdown("### This page will reload historical downloaded feedback files")
 st.write(
-    """From default folder cocreater.  
-       Or you can upload from other path.
+    """From default folder cocreater. Or you can upload from other path.
     """
 )
 # Load json file from cocreater/draft_video_feedback
