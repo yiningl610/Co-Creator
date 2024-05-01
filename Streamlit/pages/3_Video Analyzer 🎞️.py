@@ -66,7 +66,7 @@ if AnalyzeButton:
     promptThumbnail = "Give me suggestions on how to make the thumbnail for this video idea attractive."
     #promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
     #promptKeywords = "Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
-    promptTagsKeywords = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video. And Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n. Return the results in a dictionary {'tags':[tag1, tag2], 'keyowrds':'a|b|c'}."
+    promptTagsKeywords = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video. And Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n. Return the results in a dictionary with keys tags and keywords, tags are store in a list, and keywords store in a string seperated by |."
     promptRelevant = f"Tell me whether the video is relevant to the features: {aim}"
     # Set the model to Gemini 1.5 Pro.
     model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
