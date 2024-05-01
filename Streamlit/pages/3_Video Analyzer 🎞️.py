@@ -90,14 +90,14 @@ if AnalyzeButton:
     # Perform the search
     related_videos = YoutubeSearch(responseKeywords.text, max_results=10).to_dict()
     
-    requestRelevant = make_request(promptRelevant, uploaded_files)
-    responseRelevant = model.generate_content(requestRelevant)
+    # requestRelevant = make_request(promptRelevant, uploaded_files)
+    # responseRelevant = model.generate_content(requestRelevant)
     #store results into dict
     output = {"Title": responseTitle.text,
               "Description": responseDescription.text,
               "Thumbnail": responseThumbnail.text,
-              "Tag": tags,
-              "Relevance": responseRelevant.text,
+              "Tag": responseTags.text,
+              "Relevance": None,
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
     # delete frame folder
