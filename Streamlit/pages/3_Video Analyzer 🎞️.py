@@ -25,7 +25,7 @@ topic = None
 target = None
 tone = None
 aim = None
-output = {"TitleTag": None,"Description": None,"Thumbnail": None,"Tag": None,"Relevance": None,"RelatedVideo": []}
+output = {"Title": None,"Description": None,"Thumbnail": None,"Tag": None,"Relevance": None,"RelatedVideo": []}
 topic = st.text_input("Enter your topic here:")
 target = st.text_input("Enter your target audience here:")
 tone = st.text_input("Enter your desired tone here:")
@@ -93,7 +93,7 @@ if AnalyzeButton:
     requestRelevant = make_request(promptRelevant, uploaded_files)
     responseRelevant = model.generate_content(requestRelevant, request_options={"timeout": 600})
     #store results into dict
-    output = {"TitleTag": responseTitleTag.text,
+    output = {"Title": responseTitleTag.text,
               "Description": responseDescription.text,
               "Thumbnail": responseThumbnail.text,
               #"Tag": tags,
@@ -109,7 +109,7 @@ if AnalyzeButton:
 # show in streamlit
 tab1, tab2, tab3, tab4, tab5 = st.tabs(["Titles & Tags", "Descriptions", "Thumbnails", "Topic Relevance","Related Videos"])
 with tab1:
-  if output["TitleTag"]:
+  if output["Title"]:
     st.write(output["TitleTag"])
 with tab2:
   if output["Description"]:
