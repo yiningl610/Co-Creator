@@ -11,7 +11,7 @@ st.set_page_config(page_title="Video",
 logo()
 #Title()
 
-genai.configure(api_key=st.secrets['textAPI'])
+genai.configure(api_key=st.secrets['videoAPI'])
 
 st.markdown("### This page will help you analyze your draft video")
 st.write(
@@ -87,8 +87,9 @@ if AnalyzeButton:
     # responseKeywords = model.generate_content(requestKeywords, request_options={"timeout": 600})
     requestTK = make_request(promptTagsKeywords, uploaded_files)
     responseTK = model.generate_content(requestTK,request_options={"timeout": 600})
-    tags = responseTK.text['tags']
-    keywords = responseTK.text['keywords']
+    TK = eval(responseTK.text)
+    tags = TK['tags']
+    keywords = TK['keywords']
     # Perform the search
     related_videos = YoutubeSearch(keywords, max_results=10).to_dict()
     
