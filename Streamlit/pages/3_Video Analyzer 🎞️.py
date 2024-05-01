@@ -85,13 +85,13 @@ if AnalyzeButton:
     responseTags = model.generate_content(requestTags)
 
     requestKeywords = make_request(promptKeywords, uploaded_files)
-    responseKeywords = model.generate_content(requestKeywords, request_options={"timeout": 600})
+    responseKeywords = model.generate_content(requestKeywords)
     
     # Perform the search
     related_videos = YoutubeSearch(responseKeywords.text, max_results=10).to_dict()
     
     requestRelevant = make_request(promptRelevant, uploaded_files)
-    responseRelevant = model.generate_content(requestRelevant, request_options={"timeout": 600})
+    responseRelevant = model.generate_content(requestRelevant)
     #store results into dict
     output = {"Title": responseTitle.text,
               "Description": responseDescription.text,
