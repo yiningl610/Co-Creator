@@ -64,8 +64,9 @@ if AnalyzeButton:
     promptTitle = f"Brainstorm some click-worthy titles for this YouTube video! Based on the video topic {topic}, and the target audience {target}, and the feeling it evokes. Focus on the benefits viewers will get."
     promptDescription = "Craft a captivating description under 150 words, weaving vivid language, intriguing questions, and a clear call to action for the YouTube video mentioned above. Think about the video's core theme, target audience, and desired emotional response (curiosity, excitement, etc.). Include specific keywords if relevant. Remember, the key is to make the video stand out as a hidden gem, enticing viewers to click play and delve deeper! Give me just 3 descriptions with no sub-categories or tips."
     promptThumbnail = "Give me suggestions on how to make the thumbnail for this video idea attractive."
-    promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
-    promptKeywords = "Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
+    #promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
+    #promptKeywords = "Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
+    promptTagsKeywords = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video. And Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n. Return the results in a dictionary {'tags':[tag1, tag2], 'keyowrds':'a|b|c'}."
     promptRelevant = f"Tell me whether the video is relevant to the features: {aim}"
     # Set the model to Gemini 1.5 Pro.
     model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
@@ -79,13 +80,17 @@ if AnalyzeButton:
     requestThumbnail = make_request(promptThumbnail, uploaded_files)
     responseThumbnail = model.generate_content(requestThumbnail,request_options={"timeout": 600})
 
-    requestTags = make_request(promptTags, uploaded_files)
-    responseTags = model.generate_content(requestTags, request_options={"timeout": 600})
+    # requestTags = make_request(promptTags, uploaded_files)
+    # responseTags = model.generate_content(requestTags, request_options={"timeout": 600})
 
-    requestKeywords = make_request(promptKeywords, uploaded_files)
-    responseKeywords = model.generate_content(requestKeywords, request_options={"timeout": 600})
+    # requestKeywords = make_request(promptKeywords, uploaded_files)
+    # responseKeywords = model.generate_content(requestKeywords, request_options={"timeout": 600})
+    requestTK = make_request(promptTagsKeywords, uploaded_files)
+    responseTK = model.generate_content(requestTK,request_options={"timeout": 600})
+    tags = responseTK.text['tags']
+    keywords = responseTK.text['keywords']
     # Perform the search
-    related_videos = YoutubeSearch(responseKeywords.text, max_results=10).to_dict()
+    related_videos = YoutubeSearch(keywords, max_results=10).to_dict()
     
     requestRelevant = make_request(promptRelevant, uploaded_files)
     responseRelevant = model.generate_content(requestRelevant, request_options={"timeout": 600})
@@ -93,7 +98,7 @@ if AnalyzeButton:
     output = {"Title": responseTitle.text,
               "Description": responseDescription.text,
               "Thumbnail": responseThumbnail.text,
-              "Tag": responseTags.text,
+              "Tag": tags,
               "Relevance": responseRelevant.text,
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
