@@ -107,7 +107,7 @@ if AnalyzeButton:
 
 
 # show in streamlit
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles & Tags", "Descriptions", "Thumbnails", "Topic Relevance","Related Videos"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
 with tab1:
   if output["Title"]:
     st.write(output["TitleTag"])
