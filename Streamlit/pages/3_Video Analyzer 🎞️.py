@@ -11,7 +11,7 @@ st.set_page_config(page_title="Video",
 logo()
 #Title()
 
-genai.configure(api_key=st.secrets['videoAPI'])
+genai.configure(api_key=st.secrets['textAPI'])
 
 st.markdown("### This page will help you analyze your draft video")
 st.write(
