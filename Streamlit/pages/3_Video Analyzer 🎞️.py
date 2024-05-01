@@ -61,28 +61,28 @@ if AnalyzeButton:
     st.info(f"Completed file uploads!\n\nUploaded: {len(uploaded_files)} files")
   # Description generation (placeholder using user input)
     # Create the prompt.
-    #promptTitle = f"Brainstorm some click-worthy titles for this YouTube video! Based on the video topic {topic}, and the target audience {target}, and the feeling it evokes. Focus on the benefits viewers will get."
-    promptTitleTag = f"Brainstorm some click-worthy titles for this YouTube video! Based on the video topic {topic}, and the target audience {target}, and the feeling it evokes. Focus on the benefits viewers will get. And create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
+    promptTitle = f"Brainstorm some click-worthy titles for this YouTube video! Based on the video topic {topic}, and the target audience {target}, and the feeling it evokes. Focus on the benefits viewers will get."
+    #promptTitleTag = f"Brainstorm some click-worthy titles for this YouTube video! Based on the video topic {topic}, and the target audience {target}, and the feeling it evokes. Focus on the benefits viewers will get. And create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
     promptDescription = "Craft a captivating description under 150 words, weaving vivid language, intriguing questions, and a clear call to action for the YouTube video mentioned above. Think about the video's core theme, target audience, and desired emotional response (curiosity, excitement, etc.). Include specific keywords if relevant. Remember, the key is to make the video stand out as a hidden gem, enticing viewers to click play and delve deeper! Give me just 3 descriptions with no sub-categories or tips."
     promptThumbnail = "Give me suggestions on how to make the thumbnail for this video idea attractive."
-    #promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
+    promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
     promptKeywords = "Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
     promptRelevant = f"Tell me whether the video is relevant to the features: {aim}"
     # Set the model to Gemini 1.5 Pro.
     model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
     # Make the LLM request.
-    # requestTitle = make_request(promptTitle, uploaded_files)
-    # responseTitle = model.generate_content(requestTitle, request_options={"timeout": 600})
-    requestTitleTag = make_request(promptTitleTag, uploaded_files)
-    responseTitleTag = model.generate_content(requestTitleTag, request_options={"timeout": 600})
+    requestTitle = make_request(promptTitle, uploaded_files)
+    responseTitle = model.generate_content(requestTitle, request_options={"timeout": 600})
+    # requestTitleTag = make_request(promptTitleTag, uploaded_files)
+    # responseTitleTag = model.generate_content(requestTitleTag, request_options={"timeout": 600})
     requestDescription = make_request(promptDescription, uploaded_files)
     responseDescription = model.generate_content(requestDescription, request_options={"timeout": 600})
 
     requestThumbnail = make_request(promptThumbnail, uploaded_files)
     responseThumbnail = model.generate_content(requestThumbnail,request_options={"timeout": 600})
 
-    # requestTags = make_request(promptTags, uploaded_files)
-    # responseTags = model.generate_content(requestTags, request_options={"timeout": 600})
+    requestTags = make_request(promptTags, uploaded_files)
+    responseTags = model.generate_content(requestTags, request_options={"timeout": 600})
 
     requestKeywords = make_request(promptKeywords, uploaded_files)
     responseKeywords = model.generate_content(requestKeywords, request_options={"timeout": 600})
@@ -93,10 +93,10 @@ if AnalyzeButton:
     requestRelevant = make_request(promptRelevant, uploaded_files)
     responseRelevant = model.generate_content(requestRelevant, request_options={"timeout": 600})
     #store results into dict
-    output = {"Title": responseTitleTag.text,
+    output = {"Title": responseTitle.text,
               "Description": responseDescription.text,
               "Thumbnail": responseThumbnail.text,
-              #"Tag": tags,
+              "Tag": tags,
               "Relevance": responseRelevant.text,
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
@@ -107,7 +107,7 @@ if AnalyzeButton:
 
 
 # show in streamlit
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["Titles & Tags", "Descriptions", "Thumbnails", "Topic Relevance","Related Videos"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles & Tags", "Descriptions", "Thumbnails", "Topic Relevance","Related Videos"])
 with tab1:
   if output["Title"]:
     st.write(output["TitleTag"])
@@ -117,9 +117,9 @@ with tab2:
 with tab3:
   if output["Thumbnail"]:
     st.write(output["Thumbnail"])
-# with tab4:
-#   if output["Tag"]:
-#     st.write(output["Tag"])
+with tab4:
+  if output["Tag"]:
+    st.write(output["Tag"])
 with tab4:
   if output["Relevance"]:
     st.write(output["Relevance"])
