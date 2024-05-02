@@ -71,13 +71,13 @@ if AnalyzeButton:
     model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
     # Make the LLM request.
     requestTitle = make_request(promptTitle, uploaded_files)
-    responseTitle = model.generate_content(requestTitle, request_options={"timeout": 600})
+    responseTitle = model.generate_content(requestTitle)
     
     requestDescription = make_request(promptDescription, uploaded_files)
-    responseDescription = model.generate_content(requestDescription, request_options={"timeout": 600})
+    responseDescription = model.generate_content(requestDescription)
 
     requestThumbnail = make_request(promptThumbnail, uploaded_files)
-    responseThumbnail = model.generate_content(requestThumbnail,request_options={"timeout": 600})
+    responseThumbnail = model.generate_content(requestThumbnail)
 
     requestTags = make_request(promptTags, uploaded_files)
     responseTags = model.generate_content(requestTags)
