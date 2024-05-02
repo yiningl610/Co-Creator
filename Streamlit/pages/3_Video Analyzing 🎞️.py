@@ -122,7 +122,7 @@ with tab5:
 
 if output['Title']:
   file_data = generate_text_from_dict(output)
-  file_name = f'{uploaded_file.name}.txt'
+  file_name = f'{uploaded_file.name}_feedback.txt'
   st.download_button(
               label="Download Sample",
               data= file_data,
