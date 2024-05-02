@@ -119,7 +119,7 @@ def generate_text_from_dict(data):
   """Converts a dictionary to a string representation suitable for a text file."""
   text = ""
   for key, value in data.items():
-    text += f"#{key}:\n {value}\n" 
+    text += f"#{key}:\n {value}\n"  # Add newline after each key-value pair
   return text
 # allows users to choose the download location
 # and then downloads the file on button press:
