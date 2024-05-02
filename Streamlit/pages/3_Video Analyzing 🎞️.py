@@ -13,7 +13,7 @@ logo()
 
 genai.configure(api_key=st.secrets['videoAPI'])
 
-st.markdown("### This page will help you analyze your draft video")
+st.markdown("### Video Analyzer")
 st.write(
     """Upload your video, tell us who you're aiming to reach and the emotions you want to evoke, and we'll provide insightful suggestions on video title, description, thumbnail, tags to make your video more attractive. Click Analyze botton to redo it if you are not satisfied with the suggestion.
     """
@@ -128,11 +128,4 @@ if output['Title']:
               data= file_data,
               file_name= file_name
             )
-  # DownloadButton = st.download_button('Download Feedback')
-  # if DownloadButton:
-  #   file_data = generate_text_from_dict(output)
-  #   file_name = f'{uploaded_file.name}.txt'
-  #   download_file(file_data, file_name)
-  # else:
-  #   st.info('Please press Analyze Button to get feedback.')
 
