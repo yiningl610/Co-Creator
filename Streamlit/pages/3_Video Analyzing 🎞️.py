@@ -95,7 +95,7 @@ if AnalyzeButton:
               }
     #download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
     # delete frame folder
-    shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
+    #shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
   else:
      st.info("Please present your topic and press Analyze button.")
 

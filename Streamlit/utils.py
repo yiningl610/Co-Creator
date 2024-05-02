@@ -49,7 +49,7 @@ import cv2
 import json
 from datetime import datetime
 # Constants
-FRAME_EXTRACTION_DIRECTORY = "./pages/content"
+FRAME_EXTRACTION_FOLDER = "./pages/content"
 FRAME_PREFIX = "_frame"
 
 # Function to create or cleanup the frame extraction directory
@@ -63,7 +63,8 @@ def create_frame_output_dir(output_dir):
 # Function to extract frames from video (1 frame/second for demonstration)
 def extract_frame_from_video(upload_file):
     output_file_prefix = os.path.basename(upload_file.name).replace('.', '_')
-    create_frame_output_dir(FRAME_EXTRACTION_DIRECTORY+f'/frames_{output_file_prefix}')
+    FRAME_EXTRACTION_DIRECTORY = FRAME_EXTRACTION_FOLDER+f'/frames_{output_file_prefix}'
+    create_frame_output_dir(FRAME_EXTRACTION_DIRECTORY)
     
     with tempfile.NamedTemporaryFile(delete=False) as temp_file:
       temp_file.write(upload_file.read())
