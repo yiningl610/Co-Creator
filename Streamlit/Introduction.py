@@ -11,20 +11,26 @@ st.set_page_config(
 logo()
 Title()
 
-st.write("# Welcome to Co-Creater! 👋")
+st.write("# Welcome to Co-Creator, your AI-powered video creation companion!")
 
 st.markdown(
     """
-    I am Youtuber helper from GeminiAI!
+    Co-Creator is your one-stop shop for crafting the perfect video, from start to finish. Whether you're a seasoned videographer or a complete beginner, we're here to empower your creativity and streamline the process.
     
-    You can tell me your idea of a video, the exact video script you have or a finalized video.**👈 Select a way from the sidebar**
-    I will suggest you with
-    
-    - An attractive title
-    - The best time to upload the video
-    - Thumbnail design tips
-    - Description box examples
-    - Hashtags you canuse to raise more views
-    - Editing style tips (For undone videos only)
+    Here's how Co-Creator can be your partner in video creation:
+
+    ### Scriptwriting Made Easy
+
+    Struggling with writer's block? No problem! Simply input your desired video type (e.g., explainer, product demo, vlog) and the key information you want to convey. Co-Creator will generate a sample script, giving you a solid foundation to build upon.
+
+    ### Script Refinement and Style Suggestions
+
+    Already have a script in mind? Upload it and tell us about your target audience and the tone you want to achieve. Co-Creator will analyze your script and suggest music styles, color palettes, and editing techniques that perfectly complement your vision.
+
+    ### Video Optimization for Maximum Reach
+
+    Uploaded a finished video but need that extra polish? Co-Creator will analyze your video and suggest an eye-catching title, engaging description content, relevant hashtags, and even generate a thumbnail design to grab attention.
+
+    Think of Co-Creator as your creative collaborator, offering intelligent suggestions and AI-powered tools to streamline your video creation process. So, let's get started! Tell us your vision, and we'll help you turn it into a captivating video reality.
 """
 )
