@@ -63,7 +63,7 @@ if AnalyzeButton:
     promptDescription = "Craft a captivating description under 150 words, weaving vivid language, intriguing questions, and a clear call to action for the YouTube video mentioned above. Think about the video's core theme, target audience, and desired emotional response (curiosity, excitement, etc.). Include specific keywords if relevant. Remember, the key is to make the video stand out as a hidden gem, enticing viewers to click play and delve deeper! Give me just 3 descriptions with no sub-categories or tips."
     promptThumbnail = "Give me suggestions on how to make the thumbnail for this video idea attractive."
     promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
-    promptKeywords = f"Based on {aim}, give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
+    promptKeywords = f"Based on {aim}, give me 5 keywords of the video in format string, and seperate each keyword by mark |, the result shoud not end with \n"
     
     # Set the model to Gemini 1.5 Pro.
     model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
