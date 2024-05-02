@@ -67,7 +67,7 @@ if AnalyzeButton:
     promptThumbnail = "Give me suggestions on how to make the thumbnail for this video idea attractive."
     promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
     promptKeywords = "Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
-    promptRelevant = f"Tell me whether the video is relevant to the features: {aim}"
+    promptRelevant = f"Analyze the provided video for its target audience effectiveness, the target audience are {aim['target audience']}. Briefly desbribe the target audience and then evaluate: Relevance: Does the content align with their interest? Tone: is the tone appropriate (formal, casual, etc.) and coincides {aim['video tone']}. Engagement: Consider pace, filler words (um, uh, etc.), and pauses in delivering the message.Clarity: Assess vocabulary level, volume consistency, and lighting quality.Provide improvement suggestions in any of these areas, prioritizing the most impactful ones."
     # Set the model to Gemini 1.5 Pro.
     model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
     # Make the LLM request.
@@ -90,14 +90,14 @@ if AnalyzeButton:
     # Perform the search
     related_videos = YoutubeSearch(responseKeywords.text, max_results=10).to_dict()
     
-    # requestRelevant = make_request(promptRelevant, uploaded_files)
-    # responseRelevant = model.generate_content(requestRelevant)
+    requestRelevant = make_request(promptRelevant, uploaded_files)
+    responseRelevant = model.generate_content(requestRelevant)
     #store results into dict
     output = {"Title": responseTitle.text,
               "Description": responseDescription.text,
               "Thumbnail": responseThumbnail.text,
               "Tag": responseTags.text,
-              "Relevance": None,
+              "Relevance": responseRelevant.text,
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
     # delete frame folder
