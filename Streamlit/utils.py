@@ -123,7 +123,7 @@ def download_dict(data, filename, download_dir):
   filepath = os.path.join(download_dir, f'{filename}_{datetime.now().strftime("%b_%d_%Y")}')
   with open(filepath, "w") as f:
     json.dump(data, f, indent=4)
-  st.success(f"Downloaded results to: {filepath}")
+  #st.success(f"Downloaded results to: {filepath}")
 # Function to load json files
 def load_feedback_files(download_dir):
   feedback_files = []
