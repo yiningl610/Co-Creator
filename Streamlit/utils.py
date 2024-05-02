@@ -70,7 +70,7 @@ def extract_frame_from_video(upload_file):
     #bytes_data = upload_file.read()
     vidcap = cv2.VideoCapture(file_path)
     fps = vidcap.get(cv2.CAP_PROP_FPS)
-    frame_duration = 1 / fps
+    #frame_duration = 1 / fps
     output_file_prefix = os.path.basename(upload_file.name).replace('.', '_')
     frame_count = 0
     count = 0

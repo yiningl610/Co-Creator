@@ -27,7 +27,7 @@ output = {"Title": None,"Description": None,"Thumbnail": None,"Tag": None,"Relat
 topic = st.text_input("Enter your topic here:")
 target = st.text_input("Enter your target audience here:")
 tone = st.text_input("Enter your desired tone here:")
-uploaded_file = st.file_uploader("Upload your video")
+uploaded_file = st.file_uploader("Upload your video",type=['mp4'])
 AnalyzeButton = st.button('Analyze')
 
 aim = "".join(['topic:',topic, 'target audience:', target, 'video tone:', tone])
