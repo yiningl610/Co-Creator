@@ -80,7 +80,7 @@ if AnalyzeButton:
     responseThumbnail = model.generate_content(requestThumbnail,request_options={"timeout": 600})
 
     requestTags = make_request(promptTags, uploaded_files)
-    responseTags = model.generate_content(requestTags, request_options={"timeout": 600})
+    responseTags = model.generate_content(requestTags)
 
     requestKeywords = make_request(promptKeywords, uploaded_files)
     responseKeywords = model.generate_content(requestKeywords)
