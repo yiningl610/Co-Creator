@@ -11,11 +11,11 @@ st.set_page_config(
 logo()
 Title()
 
-st.write("# Welcome to Co-Creator, your AI-powered video creation companion!")
+st.write("# Welcome to Co-Creator, your Gemini-Powered Video Creation Companion!")
 
 st.markdown(
     """
-    Co-Creator is your one-stop shop for crafting the perfect video, from start to finish. Whether you're a seasoned videographer or a complete beginner, we're here to empower your creativity and streamline the process.
+    Co-Creator is your one-stop shop for crafting the perfect video, from start to finish. Whether you're a seasoned content creator or a complete beginner, we're here to empower your creativity and streamline the process.
     
     Here's how Co-Creator can be your partner in video creation:
 
@@ -25,12 +25,12 @@ st.markdown(
 
     ### Script Refinement and Style Suggestions
 
-    Already have a script in mind? Upload it and tell us about your target audience and the tone you want to achieve. Co-Creator will analyze your script and suggest music styles, color palettes, and editing techniques that perfectly complement your vision.
+    Already have a script in mind? Upload it and tell Co-Creator about your target audience and the tone you want to achieve. Co-Creator will analyze your script and suggest music styles, color palettes, and editing techniques that perfectly complement your vision.
 
     ### Video Optimization for Maximum Reach
 
     Uploaded a finished video but need that extra polish? Co-Creator will analyze your video and suggest an eye-catching title, engaging description content, relevant hashtags, and even generate a thumbnail design to grab attention.
 
-    Think of Co-Creator as your creative collaborator, offering intelligent suggestions and AI-powered tools to streamline your video creation process. So, let's get started! Tell us your vision, and we'll help you turn it into a captivating video reality.
+    Think of Co-Creator as your creative collaborator, offering intelligent suggestions and Gemini-powered tools to streamline your video creation process. So, let's get started! Tell us your vision; Co-Creator will help you turn it into a captivating video.
 """
 )
