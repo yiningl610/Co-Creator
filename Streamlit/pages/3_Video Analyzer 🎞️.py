@@ -25,7 +25,7 @@ topic = None
 target = None
 tone = None
 aim = None
-output = {"Title": None,"Description": None,"Thumbnail": None,"Tag": None,"Relevance": None,"RelatedVideo": []}
+output = {"Title": None,"Description": None,"Thumbnail": None,"Tag": None,"RelatedVideo": []}
 topic = st.text_input("Enter your topic here:")
 target = st.text_input("Enter your target audience here:")
 tone = st.text_input("Enter your desired tone here:")
@@ -62,19 +62,17 @@ if AnalyzeButton:
   # Description generation (placeholder using user input)
     # Create the prompt.
     promptTitle = f"Brainstorm some click-worthy titles for this YouTube video! Based on the video topic {topic}, and the target audience {target}, and the feeling it evokes. Focus on the benefits viewers will get."
-    #promptTitleTag = f"Brainstorm some click-worthy titles for this YouTube video! Based on the video topic {topic}, and the target audience {target}, and the feeling it evokes. Focus on the benefits viewers will get. And create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
     promptDescription = "Craft a captivating description under 150 words, weaving vivid language, intriguing questions, and a clear call to action for the YouTube video mentioned above. Think about the video's core theme, target audience, and desired emotional response (curiosity, excitement, etc.). Include specific keywords if relevant. Remember, the key is to make the video stand out as a hidden gem, enticing viewers to click play and delve deeper! Give me just 3 descriptions with no sub-categories or tips."
     promptThumbnail = "Give me suggestions on how to make the thumbnail for this video idea attractive."
     promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
     promptKeywords = "Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
-    promptRelevant = f"Analyze the provided video for its target audience effectiveness, the target audience are {aim['target audience']}. Briefly desbribe the target audience and then evaluate: Relevance: Does the content align with their interest? Tone: is the tone appropriate (formal, casual, etc.) and coincides {aim['video tone']}. Engagement: Consider pace, filler words (um, uh, etc.), and pauses in delivering the message.Clarity: Assess vocabulary level, volume consistency, and lighting quality.Provide improvement suggestions in any of these areas, prioritizing the most impactful ones."
+    
     # Set the model to Gemini 1.5 Pro.
     model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
     # Make the LLM request.
     requestTitle = make_request(promptTitle, uploaded_files)
     responseTitle = model.generate_content(requestTitle, request_options={"timeout": 600})
-    # requestTitleTag = make_request(promptTitleTag, uploaded_files)
-    # responseTitleTag = model.generate_content(requestTitleTag, request_options={"timeout": 600})
+    
     requestDescription = make_request(promptDescription, uploaded_files)
     responseDescription = model.generate_content(requestDescription, request_options={"timeout": 600})
 
@@ -90,16 +88,14 @@ if AnalyzeButton:
     # Perform the search
     related_videos = YoutubeSearch(responseKeywords.text, max_results=10).to_dict()
     
-    requestRelevant = make_request(promptRelevant, uploaded_files)
-    responseRelevant = model.generate_content(requestRelevant)
     #store results into dict
     output = {"Title": responseTitle.text,
               "Description": responseDescription.text,
               "Thumbnail": responseThumbnail.text,
               "Tag": responseTags.text,
-              "Relevance": responseRelevant.text,
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
+    download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
     # delete frame folder
     shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
   else:
@@ -107,7 +103,7 @@ if AnalyzeButton:
 
 
 # show in streamlit
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Related Videos"])
 with tab1:
   if output["Title"]:
     st.write(output["Title"])
@@ -120,19 +116,16 @@ with tab3:
 with tab4:
   if output["Tag"]:
     st.write(output["Tag"])
-with tab4:
-  if output["Relevance"]:
-    st.write(output["Relevance"])
 with tab5:
   if output["RelatedVideo"]:
     for result in output["RelatedVideo"]:
       st.write('Title: ',result['title'])
       st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
 
-if output['Title']:
-  DownloadButton = st.button('Download Feedback')
-  if DownloadButton:
-    download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
-  else:
-    st.info('Please press Analyze Button to get feedback.')
+# if output['Title']:
+#   DownloadButton = st.button('Download Feedback')
+#   if DownloadButton:
+#     download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
+#   else:
+#     st.info('Please press Analyze Button to get feedback.')
 
