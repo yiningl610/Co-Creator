@@ -121,11 +121,18 @@ with tab5:
       st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
 
 if output['Title']:
-  DownloadButton = st.download_button('Download Feedback')
-  if DownloadButton:
-    file_data = generate_text_from_dict(output)
-    file_name = f'{uploaded_file.name}.txt'
-    download_file(file_data, file_name)
-  else:
-    st.info('Please press Analyze Button to get feedback.')
+  file_data = generate_text_from_dict(output)
+  file_name = f'{uploaded_file.name}.txt'
+  st.download_button(
+              label="Download Sample",
+              data= file_data,
+              file_name= file_name
+            )
+  # DownloadButton = st.download_button('Download Feedback')
+  # if DownloadButton:
+  #   file_data = generate_text_from_dict(output)
+  #   file_name = f'{uploaded_file.name}.txt'
+  #   download_file(file_data, file_name)
+  # else:
+  #   st.info('Please press Analyze Button to get feedback.')
 
