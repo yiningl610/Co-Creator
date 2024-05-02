@@ -114,48 +114,71 @@ def make_request(prompt, files):
         request.append(file.response)
     return request
 
-# Download directory for results
-DOWNLOAD_DIR_VIDEO = "cocreater/draft_video_feedback"
-DOWNLOAD_DIR_SCRIPT = "cocreater/video_script_feedback"
-# Function to download dictionary results to a json file
-def download_dict(data, filename, download_dir):
-  os.makedirs(download_dir, exist_ok=True)  # Create directory if it doesn't exist
-  filepath = os.path.join(download_dir, f'{filename}_{datetime.now().strftime("%b_%d_%Y")}')
-  with open(filepath, "w") as f:
-    json.dump(data, f, indent=4)
-  st.success(f"Downloaded results to: {filepath}")
-# Function to load json files
-def load_feedback_files(download_dir):
-  feedback_files = []
-  if os.path.exists(download_dir):
-    for filename in os.listdir(download_dir):
-      if filename.endswith(".json"):
-        filepath = os.path.join(download_dir, filename)
-        with open(filepath, "r") as f:
-          data = json.load(f)
-        feedback_files.append({"filename": filename, "data": data})
-  return feedback_files
-
-# Function to show Feedback in streamlit by using tabs
-def show_feedback(data): 
-  """
-  Displays a dictionary in Streamlit tabs.
-  Args:
-      data (dict): The dictionary to display.
-  """
-  videos = []
-  # Loop through each key-value pair in the dictionary
+# generates a dictionary to a text file
+def generate_text_from_dict(data):
+  """Converts a dictionary to a string representation suitable for a text file."""
+  text = ""
   for key, value in data.items():
-    # Check existance of Related Video
-    if key.lower()=='relatedvideo':
-      videos = value
-    else:
-      # Create a tab with the key as the title
-      with st.expander(key):
-        # Display the value of the key (can be another dictionary, list, or any data)
-        st.write(value)
-    if videos:
-       st.expander("Related Videos")
-       for video in videos:
-          st.write('Title: ',video['title'])
-          st.write(f"Video URL: https://www.youtube.com/watch?v={video['id']}")
+    text += f"{key}:\n {value}\n\n"  # Add newline after each key-value pair
+  return text
+# allows users to choose the download location
+# and then downloads the file on button press:
+def download_file(file_data, file_name):
+  """Downloads the provided data as a file with the given name at the specified path."""
+  download_path = get_download_path()
+  complete_path = os.path.join(download_path, file_name)
+  with open(complete_path, "w") as f:
+    f.write(file_data)
+  st.success(f"File downloaded to: {complete_path}")
+
+def get_download_path():
+  """Prompts the user to select a download location."""
+  with st.sidebar.expander("Choose Download Location"):
+    download_path = st.text_input("Enter download path (or leave blank for default)", "")
+  return download_path if download_path else os.getcwd()
+
+# Download directory for results
+# DOWNLOAD_DIR_VIDEO = "cocreater/draft_video_feedback"
+# DOWNLOAD_DIR_SCRIPT = "cocreater/video_script_feedback"
+# Function to download dictionary results to a json file
+# def download_dict(data, filename, download_dir):
+#   os.makedirs(download_dir, exist_ok=True)  # Create directory if it doesn't exist
+#   filepath = os.path.join(download_dir, f'{filename}_{datetime.now().strftime("%b_%d_%Y")}')
+#   with open(filepath, "w") as f:
+#     json.dump(data, f, indent=4)
+#   st.success(f"Downloaded results to: {filepath}")
+# Function to load json files
+# def load_feedback_files(download_dir):
+#   feedback_files = []
+#   if os.path.exists(download_dir):
+#     for filename in os.listdir(download_dir):
+#       if filename.endswith(".json"):
+#         filepath = os.path.join(download_dir, filename)
+#         with open(filepath, "r") as f:
+#           data = json.load(f)
+#         feedback_files.append({"filename": filename, "data": data})
+#   return feedback_files
+
+# # Function to show Feedback in streamlit by using tabs
+# def show_feedback(data): 
+#   """
+#   Displays a dictionary in Streamlit tabs.
+#   Args:
+#       data (dict): The dictionary to display.
+#   """
+#   videos = []
+#   # Loop through each key-value pair in the dictionary
+#   for key, value in data.items():
+#     # Check existance of Related Video
+#     if key.lower()=='relatedvideo':
+#       videos = value
+#     else:
+#       # Create a tab with the key as the title
+#       with st.expander(key):
+#         # Display the value of the key (can be another dictionary, list, or any data)
+#         st.write(value)
+#     if videos:
+#        st.expander("Related Videos")
+#        for video in videos:
+#           st.write('Title: ',video['title'])
+#           st.write(f"Video URL: https://www.youtube.com/watch?v={video['id']}")
