@@ -13,7 +13,7 @@ logo()
 
 genai.configure(api_key=st.secrets['videoAPI'])
 
-st.markdown("### Video Analyzer")
+st.markdown("# Video Analyzer")
 st.write(
     """Upload your video, tell us who you're aiming to reach and the emotions you want to evoke, and we'll provide insightful suggestions on video title, description, thumbnail, tags to make your video more attractive. Click Analyze botton to redo it if you are not satisfied with the suggestion.
     """
