@@ -25,7 +25,7 @@ topic = None
 target = None
 tone = None
 aim = None
-output = {"Title": None,"Description": None,"Thumbnail": None,"Tag": None,"Relevance": None,"RelatedVideo": []}
+output = {"Title": None,"Description": None,"Thumbnail": None,"Tag": None,"RelatedVideo": []}
 topic = st.text_input("Enter your topic here:")
 target = st.text_input("Enter your target audience here:")
 tone = st.text_input("Enter your desired tone here:")
@@ -67,7 +67,7 @@ if AnalyzeButton:
     promptThumbnail = "Give me suggestions on how to make the thumbnail for this video idea attractive."
     promptTags = f"Create a list of 5 relevant hashtags for this YouTube video. Include a mix of high-volume and low-volume hashtags, targeting the specific features {aim} and niche of the video."
     promptKeywords = "Give me 5 keywords of the video in format string and seperate each one by |, do not end with \n"
-    promptRelevant = f"Analyze the provided video for its target audience effectiveness, the target audience are {aim['target audience']}. And is the tone appropriately coincides with {aim['video tone']}."
+    #promptRelevant = f"Analyze the provided video for its target audience effectiveness, the target audience are {aim['target audience']}. And is the tone appropriately coincides with {aim['video tone']}."
     # Set the model to Gemini 1.5 Pro.
     model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
     # Make the LLM request.
@@ -90,14 +90,14 @@ if AnalyzeButton:
     # Perform the search
     related_videos = YoutubeSearch(responseKeywords.text, max_results=10).to_dict()
     
-    requestRelevant = make_request(promptRelevant, uploaded_files)
-    responseRelevant = model.generate_content(requestRelevant)
+    # requestRelevant = make_request(promptRelevant, uploaded_files)
+    # responseRelevant = model.generate_content(requestRelevant)
     #store results into dict
     output = {"Title": responseTitle.text,
               "Description": responseDescription.text,
               "Thumbnail": responseThumbnail.text,
               "Tag": responseTags.text,
-              "Relevance": responseRelevant.text,
+              #"Relevance": responseRelevant.text,
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
     # delete frame folder
@@ -107,7 +107,7 @@ if AnalyzeButton:
 
 
 # show in streamlit
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Topic Relevance","Related Videos"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["Titles", "Descriptions", "Thumbnails", "Tags", "Related Videos"])
 with tab1:
   if output["Title"]:
     st.write(output["Title"])
@@ -120,9 +120,9 @@ with tab3:
 with tab4:
   if output["Tag"]:
     st.write(output["Tag"])
-with tab4:
-  if output["Relevance"]:
-    st.write(output["Relevance"])
+# with tab4:
+#   if output["Relevance"]:
+#     st.write(output["Relevance"])
 with tab5:
   if output["RelatedVideo"]:
     for result in output["RelatedVideo"]:
