@@ -95,6 +95,7 @@ if AnalyzeButton:
               "Tag": responseTags.text,
               "RelatedVideo": related_videos #an array of dict, where includes id, thumbnails, title, long_desc, channel, duration, views, publish_time, url_suffix.
               }
+    download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
     # delete frame folder
     shutil.rmtree(FRAME_EXTRACTION_DIRECTORY)
   else:
@@ -121,10 +122,10 @@ with tab5:
       st.write('Title: ',result['title'])
       st.write(f"Video URL: https://www.youtube.com/watch?v={result['id']}")
 
-if output['Title']:
-  DownloadButton = st.button('Download Feedback')
-  if DownloadButton:
-    download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
-  else:
-    st.info('Please press Analyze Button to get feedback.')
+# if output['Title']:
+#   DownloadButton = st.button('Download Feedback')
+#   if DownloadButton:
+#     download_dict(output,uploaded_file.name,DOWNLOAD_DIR_VIDEO)
+#   else:
+#     st.info('Please press Analyze Button to get feedback.')
 
