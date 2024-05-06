@@ -25,7 +25,7 @@ While primarily known for text analysis, Co-Creator successfully incorporates vi
 Co-Creator currently faces limitations in file size (200MB) and video analysis runtime. Expanding the file size limit and optimizing video processing speed are key priorities for future development.
 
 ## Built With
-python
-streamlit
-youtubesearch  
+python  
+streamlit  
+youtubesearch    
 google gemini
