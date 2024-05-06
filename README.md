@@ -27,4 +27,4 @@ python
 streamlit
 youtubesearch
 # Try it out
-co-creator.streamlit.app
+[co-creator.streamlit.app](https://co-creator.streamlit.app/)
