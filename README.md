@@ -1,8 +1,5 @@
 # Co-Creator
-An App help youtuber to achieve best views for the uploading video for Gemini Hackathon, detailed description: 
-<video controls>
-    <source src="https://vimeo.com/942180782" type="video/mp4">
-</video>
+An App help youtuber to achieve best views for the uploading video for Gemini Hackathon, detailed description please visit [co-creator demo](https://vimeo.com/942180782)
 
 ## Inspiration
 Many aspiring YouTubers struggle with the non-video aspects of content creation, such as scriptwriting, title development, and video descriptions. This project aims to address these challenges by providing an AI-powered tool that assists creators throughout the process.
@@ -28,6 +25,7 @@ Co-Creator currently faces limitations in file size (200MB) and video analysis r
 ## Built With
 python
 streamlit
-youtubesearch
+youtubesearch  
+google gemini
 # Try it out
 [co-creator.streamlit.app](https://co-creator.streamlit.app/)
