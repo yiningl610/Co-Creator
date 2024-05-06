@@ -1,8 +1,8 @@
 # Co-Creator
 An App help youtuber to achieve best views for the uploading video for Gemini Hackathon, detailed description: 
-```HTML
-<video src="https://vimeo.com/942180782" controls="controls" width="500" height="300"></video>
-```
+<video controls>
+    <source src="https://vimeo.com/942180782" type="video/mp4">
+</video>
 
 ## Inspiration
 Many aspiring YouTubers struggle with the non-video aspects of content creation, such as scriptwriting, title development, and video descriptions. This project aims to address these challenges by providing an AI-powered tool that assists creators throughout the process.
