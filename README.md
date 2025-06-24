@@ -2,7 +2,7 @@
 An App help youtuber to achieve best views for the uploading video for Gemini Hackathon  
 - detailed description please visit [co-creator demo](https://vimeo.com/942180782)
 - Try it out: [co-creator.streamlit.app](https://co-creator.streamlit.app/)  
-![image](https://github.com/yiningl610/Co-Creator/assets/34790986/26541e46-9ffb-43ad-a3fc-1cfa19ae70dc)
+![flowchart](https://github.com/user-attachments/assets/be40728a-6d4d-4055-8505-f35280674f1a)
 
 ## Inspiration
 Many aspiring YouTubers struggle with the non-video aspects of content creation, such as scriptwriting, title development, and video descriptions. This project aims to address these challenges by providing an AI-powered tool that assists creators throughout the process.
